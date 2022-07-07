@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS travelot_db;
+
+CREATE DATABASE travelot_db;
