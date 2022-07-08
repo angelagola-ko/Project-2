@@ -1,0 +1,15 @@
+<section class="container">
+    <!-- If the user is logged in, render their wishlist -->
+    {{#if loggedIn}}
+    <a href="/wishlist"></a>
+        {{#each Wishlist.photo as |photo|}}
+        {{> wishlist-details}}
+        {{/each}}
+    </a>
+
+
+    <!-- Otherwise, provide a link to login -->
+    {{else}}
+    <a href="/login">You must login first to view your wishlist</a>
+    {{/if}}
+</section>
