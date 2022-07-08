@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 //app.use(session(sess));
 
 //const helpers = require('./utils/helpers');
+const hbs = exphbs.create({});;
 
 //const hbs = exphbs.create({ helpers });
 app.use(express.static("public"));

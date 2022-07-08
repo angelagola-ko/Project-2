@@ -8,4 +8,7 @@ router.get("/trips" ,(req,res) => {
     res.render("trips");
 })
 
+const { Wishlist, User, Trips } = require('../models');
+
+
 module.exports = router;
