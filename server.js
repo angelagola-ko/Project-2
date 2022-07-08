@@ -6,15 +6,6 @@ const exphbs = require('express-handlebars');
 const app = express();
 const PORT = process.env.PORT || 3004;
 
-const cors = require("cors");
-const corsOptions ={
-    origin:'*', 
-    credentials:true,
-    optionSuccessStatus:200,
-}
-
-app.use(cors(corsOptions))
-
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
