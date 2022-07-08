@@ -1,11 +1,27 @@
 {
+  "name": "travelot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "seeds": "node seeds/index.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "connect-session-sequelize": "^7.1.4",
-    "dotenv": "^16.0.1",
-    "express-session": "^1.17.3",
-    "handlebars": "^4.7.7",
-    "mysql2": "^2.3.3",
+    "bcrypt": "^4.0.1",
+    "connect-session-sequelize": "^6.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "handlebars": "^4.7.3",
+    "mysql2": "^2.1.0",
     "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
