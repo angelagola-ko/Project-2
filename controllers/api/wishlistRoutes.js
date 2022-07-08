@@ -4,11 +4,11 @@ const withAuth = require('../../utils/auth');
 
 
 // GET all wishlist locations for wishlist page
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     Wishlist.findAll({
-        where: {
-            user_id: req.params.user_id
-        },
+        // where: {
+        //     user_id: req.params.user_id
+        // },
         attributes: [
             'id',
             'location',
@@ -31,10 +31,10 @@ router.get('/', withAuth, async (req, res) => {
 
 
 // GET one wishlist location by city
-router.get('/:location', withAuth, async (req, res) => {
+router.get('/:location', async (req, res) => {
     Wishlist.findOne({
         where: {
-            user_id: req.params.user_id,
+            // user_id: req.params.user_id,
             location: req.params.location
         },
         attributes: [
@@ -58,7 +58,7 @@ router.get('/:location', withAuth, async (req, res) => {
 });
 
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     // Get photo
     cityLocation = req.body.location.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
     console.log(cityLocation); 
