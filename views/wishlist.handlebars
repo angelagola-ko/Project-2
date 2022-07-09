@@ -1,15 +1,33 @@
+<!-- Title -->
+<h1 class="jumbotron text-center text-info">Wishlist</h1>
+
 <section class="container">
-    <!-- If the user is logged in, render their wishlist -->
-    {{#if loggedIn}}
-    <a href="/wishlist"></a>
-        {{#each Wishlist.photo as |photo|}}
-        {{> wishlist-details}}
-        {{/each}}
-    </a>
+    <!-- If the user is logged in, allow them to add to wishlist and also render their wishlist -->
+    {{!-- {{#if loggedIn}} --}}
+
+    <!-- Add to wishlist -->
+    <div>
+        <h4 class="text-center">Add Destination to Wishlist</h4>
+        <form class="text-center" action="/wishlist" method="POST">
+            <input type="text" name="location" placeholder="Enter City" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
+    <!-- Render Wishlist -->
+    <div>
+        <h4 class="jumbotron text-center text-info">My Wishlist</h4>
+        <a href="/wishlist"></a>
+            {{#each wishlist}}
+            {{> wishlist-details}}
+            {{/each}}
+        </a>
+    </div>
+    <!-- End of logged in page -->
 
 
     <!-- Otherwise, provide a link to login -->
-    {{else}}
-    <a href="/login">You must login first to view your wishlist</a>
-    {{/if}}
+    {{!-- {{else}}
+    <a class="text-center text-info" href="/login">You must login first to view your wishlist</a>
+    {{/if}} --}}
 </section>
