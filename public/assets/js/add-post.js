@@ -18,8 +18,15 @@ addCard(results);
 
 function addCard(loco) {
     const location= document.getElementById("cardLocation");
+    const name=document.createElement("div");
+    name.classList.add("card-body");
+    name.src = loco.location;
     const img = document.createElement("img");
+    img.classList.add("card-img-top");
     img.src = loco.photo;
+    location.appendChild(name);
+   // console.log(name);
+    //const nameLocation= document.getElementById("cardLocation");
     location.appendChild(img);
 
     //cardLocation

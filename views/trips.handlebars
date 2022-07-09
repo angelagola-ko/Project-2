@@ -12,12 +12,24 @@
   <button type="submit" class="btn btn-add-trip" id="tripbtn">Submit</button>
 </form>
 
+ <div>
+        <h4 class="jumbotron text-center text-info">My Wishlist</h4>
+        <a href="/wishlist"></a>
+            {{#each wishlist}}
+            {{> wishlist-details}}
+            {{/each}}
+        </a>
+    </div>
+
 <div class="card" id="cardLocation" style="width: 18rem;">
   <img class="card-img-top" src="..." alt="Travel Destination">
   <div class="card-body">
-    <h5 class="card-title">Cool Place</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-info">Go somewhere</a>
+    <h5 class="card-title" id="card-title">Cool Place</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
 
+<div class="card" id="accordion" style="width: 18rem;">
+  
+</div>
