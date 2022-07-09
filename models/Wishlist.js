@@ -18,9 +18,7 @@ Wishlist.init(
         photo: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-            isURL: true
-            }
+            defaultValue: "../public/images/Travelot-Stock-Img-2.jpg"
         },
         user_id: {
             type: DataTypes.INTEGER,

@@ -6,6 +6,9 @@ const withAuth = require('../../utils/auth');
 // GET all wishlist locations for wishlist page
 router.get('/', async (req, res) => {
     Wishlist.findAll({
+        // where: {
+        //     user_id: req.params.user_id
+        // },
         attributes: [
             'id',
             'location',
@@ -28,10 +31,11 @@ router.get('/', async (req, res) => {
 
 
 // GET one wishlist location by city
-router.get('/:city', async (req, res) => {
+router.get('/:location', async (req, res) => {
     Wishlist.findOne({
         where: {
-            city: req.params.city
+            // user_id: req.params.user_id,
+            location: req.params.location
         },
         attributes: [
             'id',
@@ -54,35 +58,38 @@ router.get('/:city', async (req, res) => {
 });
 
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     // Get photo
-    cityLocation = req.body.location.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
-    console.log(cityLocation); 
+    var getCity = function (city) {
+        cityLocation = city.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
+        console.log(cityLocation);
 
-    fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
-    .then(function (response) {
-        
+        fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
+        .then(function (response) {
             response.json()
             .then(function (data) {
-                if (!data.photos) {
-                    cityPhoto = "../../public/images/Travelot-Stock-Img-2.jpg";
-                } else {
-                    console.log(data.photos[0].image.mobile);
-                    cityPhoto = data.photos[0].image.mobile;
-                }
-        });
-    })
+                console.log(data.photos[0].image.mobile)
+                makeWishlist(data.photos[0].image.mobile);
+            });
+        })
+    }
+    // End of Get Photo
 
-    Wishlist.create({
-        location: req.body.location,
-        photo: cityPhoto,
-        user_id: req.session.user_id
-    })
-    .then(dbWishlistData => res.json(dbWishlistData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    // Create wishlist object
+    var makeWishlist = function (cityPhoto) {
+        Wishlist.create({
+            location: req.body.location,
+            photo: cityPhoto,
+            user_id: req.body.user_id
+        })
+        .then(dbWishlistData => res.json(dbWishlistData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    };
+
+    getCity(req.body.location);
 });
 
 
