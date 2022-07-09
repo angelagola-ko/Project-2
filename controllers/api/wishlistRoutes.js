@@ -60,36 +60,36 @@ router.get('/:location', async (req, res) => {
 
 router.post('/', (req, res) => {
     // Get photo
-    cityLocation = req.body.location.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
-    console.log(cityLocation); 
+    var getCity = function (city) {
+        cityLocation = city.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
+        console.log(cityLocation);
 
-    fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
-    .then(function (response) {
-        
+        fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
+        .then(function (response) {
             response.json()
             .then(function (data) {
-                if (!data.photos) {
-                    cityPhoto = "../../public/images/Travelot-Stock-Img-2.jpg";
-                } else {
-                    console.log(data.photos[0].image.mobile);
-                    cityPhoto = data.photos[0].image.mobile;
-                }
-        });
-    })
+                console.log(data.photos[0].image.mobile)
+                makeWishlist(data.photos[0].image.mobile);
+            });
+        })
+    }
     // End of Get Photo
 
-    
     // Create wishlist object
-    Wishlist.create({
-        location: req.body.location,
-        photo: cityPhoto,
-        user_id: req.session.user_id
-    })
-    .then(dbWishlistData => res.json(dbWishlistData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    var makeWishlist = function (cityPhoto) {
+        Wishlist.create({
+            location: req.body.location,
+            photo: cityPhoto,
+            user_id: req.body.user_id
+        })
+        .then(dbWishlistData => res.json(dbWishlistData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    };
+
+    getCity(req.body.location);
 });
 
 
