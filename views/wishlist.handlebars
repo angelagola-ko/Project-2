@@ -1,33 +1,43 @@
 <!-- Title -->
-<h1 class="jumbotron text-center text-info">Wishlist</h1>
+<h1 class="jumbotron text-center text-info display-1">Wishlist</h1>
 
+<script src="/assets/js/wishlist-post.js"></script>
+
+
+<!-- If the user is logged in, allow them to add to wishlist and also render their wishlist -->
+{{!-- {{#if loggedIn}} --}}
 <section class="container">
-    <!-- If the user is logged in, allow them to add to wishlist and also render their wishlist -->
-    {{!-- {{#if loggedIn}} --}}
-
     <!-- Add to wishlist -->
-    <div>
-        <h4 class="text-center">Add Destination to Wishlist</h4>
-        <form class="text-center" action="/wishlist" method="POST">
-            <input type="text" name="location" placeholder="Enter City" />
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
-
-    <!-- Render Wishlist -->
-    <div>
-        <h4 class="jumbotron text-center text-info">My Wishlist</h4>
-        <a href="/wishlist"></a>
-            {{#each wishlist}}
-            {{> wishlist-details}}
-            {{/each}}
-        </a>
-    </div>
-    <!-- End of logged in page -->
-
-
-    <!-- Otherwise, provide a link to login -->
-    {{!-- {{else}}
-    <a class="text-center text-info" href="/login">You must login first to view your wishlist</a>
-    {{/if}} --}}
+    <h4 class="text-center">Add Destination to Wishlist</h4>
+    <form class="text-center">
+        <input type="text" name="location" placeholder="Enter City" />
+        <input type="submit" value="Submit" />
+    </form>
 </section>
+
+<br>
+
+<section>
+    <!-- Render Wishlist -->
+    <h4 class="jumbotron text-center text-info">My Wishlist</h4>
+    <a href="/wishlist"></a>
+        {{#each wishlist}}
+            <section class="card">
+                <!-- The contents of this card links to the wishlist page using the wishlist ID -->
+                <a href="/wishlist/{{location}}">
+                    <!-- The card contains the wishlist location name as the card header -->
+                    <header>{{location}}</header>
+                    <!-- The card contains the first painting of the gallery -->
+                    <img src="{{photo}}" alt="Photo of {{location}}">
+                </a>
+            </section>
+        {{/each}}
+    </a>
+</section>
+<!-- End of logged in page -->
+
+
+<!-- Otherwise, provide a link to login -->
+{{!-- {{else}}
+<a class="text-center text-info" href="/login">You must login first to view your wishlist</a>
+{{/if}} --}}
