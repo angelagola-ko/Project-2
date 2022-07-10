@@ -1,0 +1,17 @@
+<!-- Title -->
+<h1 class="jumbotron text-center text-info display-1">City Card</h1>
+
+{{#each wishlist}}
+    <div class="d-flex justify-content-center">
+        <section class="card" style="width: 35rem;">
+            <div class='card bg-dark text-white'>
+                <!-- City Photo -->
+                <img class="card-img img-thumbnail" src="{{photo}}" alt="Photo of {{location}}">
+                <div class="card-img-overlay text-center d-flex flex-column justify-content-center">
+                    <!-- Location -->
+                    <h4 class="text-center card-title" style="color: #FFFFFF; border-radius: 70px; background: rgb(60, 60, 60, 0.7); text-shadow: #474747 3px 5px 2px; font-size: 4rem;">{{location}}</h4>
+                </div>
+            </div>
+        </section>
+    </div>
+{{/each}}

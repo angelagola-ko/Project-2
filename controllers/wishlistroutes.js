@@ -1,11 +1,13 @@
 const router = require('express').Router();
-const { Wishlist, User } = require('../models');
+const { Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-// GET all wishlist locations for wishlist page
-router.get('/', async (req, res) => {
+router.get("/" , (req,res) => {
     Wishlist.findAll({
+        // where: {
+        //     user_id: req.session.user_id
+        // },
         attributes: [
             'id',
             'location',
@@ -14,24 +16,57 @@ router.get('/', async (req, res) => {
         ]
     })
     .then(dbWishlistData => {
-        if (!dbWishlistData) {
-            res.status(404).json({ message: 'No Wishlist found' });
-            return;
-        }
-        res.json(dbWishlistData);
-        })
-        .catch(err => {
+        const wishlist = dbWishlistData.map(wishlist => wishlist.get({ plain: true }));
+        res.render("wishlist", { wishlist });
+    })
+    .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
+})
+
+router.post('/', (req, res) => {
+    // Get photo
+    var getCity = function (city) {
+        cityLocation = city.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
+        console.log(cityLocation);
+
+        fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
+        .then(function (response) {
+            response.json()
+            .then(function (data) {
+                makeWishlist(data.photos[0].image.mobile);
+            });
+        })
+    }
+    // End of Get Photo
+
+    // Create wishlist object
+    var makeWishlist = function (cityPhoto) {
+        Wishlist.create({
+            location: req.body.location,
+            photo: cityPhoto,
+            user_id: req.body.user_id
+        })
+        .then(
+        dbWishlistData => {
+        const wishlist = dbWishlistData.map(wishlist => wishlist.get({ plain: true }));
+        res.render('/wishlist', { wishlist })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    };
+
+    getCity(req.body.location);
 });
 
-
-// GET one wishlist location by city
-router.get('/:city', async (req, res) => {
+router.get("/:location" , (req,res) => {
     Wishlist.findOne({
         where: {
-            city: req.params.city
+            // user_id: req.session.user_id,
+            location: req.params.location
         },
         attributes: [
             'id',
@@ -41,49 +76,14 @@ router.get('/:city', async (req, res) => {
         ]
     })
     .then(dbWishlistData => {
-        if (!dbWishlistData) {
-            res.status(404).json({ message: 'No Wishlist found for this city' });
-            return;
-        }
-        res.json(dbWishlistData);
-        })
-        .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
-
-
-router.post('/', withAuth, (req, res) => {
-    // Get photo
-    cityLocation = req.body.location.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
-    console.log(cityLocation); 
-
-    fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
-    .then(function (response) {
-        
-            response.json()
-            .then(function (data) {
-                if (!data.photos) {
-                    cityPhoto = "../../public/images/Travelot-Stock-Img-2.jpg";
-                } else {
-                    console.log(data.photos[0].image.mobile);
-                    cityPhoto = data.photos[0].image.mobile;
-                }
-        });
+        const wishlist = [dbWishlistData].map(wishlist => wishlist.get({ plain: true }));
+        res.render("city", { wishlist });
     })
-
-    Wishlist.create({
-        location: req.body.location,
-        photo: cityPhoto,
-        user_id: req.session.user_id
-    })
-    .then(dbWishlistData => res.json(dbWishlistData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-});
+})
 
 
 module.exports = router;

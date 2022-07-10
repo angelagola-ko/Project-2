@@ -1,17 +1,15 @@
 <!-- Title -->
 <h1 class="jumbotron text-center text-info display-1">Wishlist</h1>
 
-<script src="/assets/js/wishlist-post.js"></script>
-
 
 <!-- If the user is logged in, allow them to add to wishlist and also render their wishlist -->
 {{!-- {{#if loggedIn}} --}}
 <section class="container">
     <!-- Add to wishlist -->
     <h4 class="text-center">Add Destination to Wishlist</h4>
-    <form class="text-center">
+    <form class="wishlist-form text-center d-flex justify-content-center">
         <input type="text" name="location" placeholder="Enter City" />
-        <input type="submit" value="Submit" />
+        <button type="submit" class="btn btn-info"/>Add</button>
     </form>
 </section>
 
@@ -20,20 +18,18 @@
 <section>
     <!-- Render Wishlist -->
     <h4 class="jumbotron text-center text-info">My Wishlist</h4>
-    <a href="/wishlist"></a>
-        {{#each wishlist}}
-            <section class="card">
-                <!-- The contents of this card links to the wishlist page using the wishlist ID -->
-                <a href="/wishlist/{{location}}">
-                    <!-- The card contains the wishlist location name as the card header -->
-                    <header>{{location}}</header>
-                    <!-- The card contains the first painting of the gallery -->
-                    <img src="{{photo}}" alt="Photo of {{location}}">
-                </a>
-            </section>
-        {{/each}}
-    </a>
+    <div class='row justify-content-center'>
+        <a href="/wishlist"></a>
+            {{#each wishlist}}
+                {{> wishlist-details}}
+            {{/each}}
+        </a>
+    </div>
 </section>
+
+
+<script src="/assets/js/wishlist-post.js"></script>
+<script src="/assets/js/wishlist-delete.js"></script>
 <!-- End of logged in page -->
 
 

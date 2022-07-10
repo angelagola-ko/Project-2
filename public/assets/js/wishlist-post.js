@@ -1,21 +1,20 @@
-function postWishlist(data) {
-    const results= fetch(`/api/wishlist/`, {
-        method:'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(data),
-    }) 
-    .then(response => response.json())
-    .then(data => {
-    console.log('Success:', data);
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    });
-};
+async function newWishlist(event) {
+    event.preventDefault();
 
-// document.querySelector("#wishlistbtn").addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     postWishlist();
-// });
+    const location = document.querySelector('input[name="location"]').value;
+
+    const response = await fetch(`/wishlist`, {
+        method: 'POST',
+        body: JSON.stringify({
+        location,
+        // body.session.user_id
+        }),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+    });
+
+    document.location.replace('/wishlist');
+}
+
+document.querySelector('.wishlist-form').addEventListener('submit', newWishlist);
