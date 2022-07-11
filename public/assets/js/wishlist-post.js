@@ -6,11 +6,11 @@ async function newWishlist(event) {
     const response = await fetch(`/wishlist`, {
         method: 'POST',
         body: JSON.stringify({
-        location,
-        // body.session.user_id
+            location,
+            // body.session.user_id
         }),
         headers: {
-        'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
     });
 

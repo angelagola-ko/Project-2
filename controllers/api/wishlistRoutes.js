@@ -93,5 +93,24 @@ router.post('/', (req, res) => {
     getCity(req.body.location);
 });
 
+// Delete wishlist location
+router.delete('/:location', async (req, res) => {
+    try {
+        const [changedWishlist] = Wishlist.destroy({
+            where: {
+                location: req.params.location,
+            },
+        });
+
+        if (changedWishlist > 0) {
+            res.status(200).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;
