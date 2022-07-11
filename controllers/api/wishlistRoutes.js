@@ -4,10 +4,10 @@ const withAuth = require('../../utils/auth');
 
 
 // GET all wishlist locations for wishlist page
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     Wishlist.findAll({
         // where: {
-        //     user_id: req.params.user_id
+        //     user_id: req.session.user_id
         // },
         attributes: [
             'id',
@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
             return;
         }
         res.json(dbWishlistData);
+        console.log(dbWishlistData)
         })
         .catch(err => {
         console.log(err);
@@ -31,10 +32,10 @@ router.get('/', async (req, res) => {
 
 
 // GET one wishlist location by city
-router.get('/:location', async (req, res) => {
+router.get('/:location', (req, res) => {
     Wishlist.findOne({
         where: {
-            // user_id: req.params.user_id,
+            // user_id: req.session.user_id,
             location: req.params.location
         },
         attributes: [
@@ -90,6 +91,25 @@ router.post('/', (req, res) => {
     };
 
     getCity(req.body.location);
+});
+
+// Delete wishlist location
+router.delete('/:location', async (req, res) => {
+    try {
+        const [changedWishlist] = Wishlist.destroy({
+            where: {
+                location: req.params.location,
+            },
+        });
+
+        if (changedWishlist > 0) {
+            res.status(200).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 
