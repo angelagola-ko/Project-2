@@ -18,8 +18,11 @@ router.get('/login', (req, res) => {
       res.redirect('/');
       return;
     }
-  
     res.render('login');
+});
+
+router.get('/menu', (req, res) => {
+    res.render('menu');
 });
 
 module.exports = router;
