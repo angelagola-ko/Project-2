@@ -1,11 +1,22 @@
 /* Dropdown Button */
+.body {background-color: #fca440}
+
+.nav {
+    background-color: rgb(18, 61, 97);
+    color: white;
+    border: 1px solid black;
+    height: 75px;
+    padding: 15px;
+}
 .dropbtn {
-    background-color: #faaf58;
+    background-color: #fca440;
     color: white;
     padding: 8px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    margin-left: 50px;
+    border-radius: 15px;
   }
   
   /* Dropdown button on hover & focus */

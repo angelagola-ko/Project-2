@@ -11,23 +11,24 @@
     <title>Travelot</title>
 </head>
 
-<body>
-    <nav class="d-flex justify-content-center">
+<nav class="d-flex justify-content-center sticky-top nav">
     <h2>Travelot</h2>
 
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">
-  {{!-- <span class="navbar-toggler-icon"></span> --}}
-  Menu</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/trips">Past Trips</a>
-    <a href="/wishlist">Wishlist</a>
-    <a href="/">Logout</a>
-  </div>
-</div>
+    <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">
+    {{!-- <span class="navbar-toggler-icon"></span> --}}
+    Menu</button>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/trips">Past Trips</a>
+        <a href="/wishlist">Wishlist</a>
+        <a href="/">Logout</a>
+    </div>
+    </div>
 </nav>
+
+<body class="body">
 
     
     {{{ body }}}
