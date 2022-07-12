@@ -33,10 +33,14 @@ router.post('/', (req, res) => {
 
         fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
         .then(function (response) {
-            response.json()
-            .then(function (data) {
-                makeWishlist(data.photos[0].image.mobile);
-            });
+            if (response.statusText != 'OK') {
+                makeWishlist(`https://static.turbosquid.com/Preview/001325/331/VU/_DHQ.jpg`)
+            } else {
+                response.json()
+                .then(function (data) {
+                    makeWishlist(data.photos[0].image.mobile);
+                });
+            }
         })
     }
     // End of Get Photo
