@@ -17,4 +17,4 @@ async function newTrips(event) {
     document.location.replace('/trips');
 }
 
-document.querySelector('trips-form').addEventListener('submit', newTrips);
+document.querySelector('container').addEventListener('submit', newTrips);
