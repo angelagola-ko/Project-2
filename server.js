@@ -6,29 +6,28 @@ const exphbs = require('express-handlebars');
 const app = express();
 const PORT = process.env.PORT || 3004;
 
-//const sequelize = require('./config/connection');
-//const { add } = require('lodash');
-//const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./config/connection');
+const { add } = require('lodash');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const sess = {
-//     secret: 'Travelog app super secret FBI security clearance required.',
-//     cookie: {},
-//     resave: false,
-//     saveUninitialized: true,
-//    // store: new SequelizeStore({
-//   //      db: sequelize
-//  //   })
-// };
+const sess = {
+    secret: 'Travelog app super secret FBI security clearance required.',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+     store: new SequelizeStore({
+         db: sequelize
+    })
+};
 
-//app.use(session(sess));
+app.use(session(sess));
 
-//const helpers = require('./utils/helpers');
-const hbs = exphbs.create({});;
+const helpers = require('./utils/helpers');
 
-//const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ helpers });
 app.use(express.static("public"));
 
 app.engine('handlebars', exphbs.engine());
@@ -40,6 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('./controllers/'));
 
-//sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
-//  });
+  });
