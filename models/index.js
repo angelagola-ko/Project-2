@@ -1,6 +1,8 @@
 const Trips = require("./Trips");
 const User = require("./User");
 const Wishlist = require("./Wishlist");
+const Explore = require("./Explore");
+
 
 // create associations
 User.hasMany(Trips, {
@@ -17,4 +19,4 @@ Wishlist.belongsTo(User, {
     onDelete: "SET NULL",
   });
 
-module.exports = { User, Trips, Wishlist };
+module.exports = { User, Trips, Wishlist, Explore };

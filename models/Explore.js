@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Wishlist extends Model {}
+class Explore extends Model {}
 
-Wishlist.init(
+Explore.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -13,28 +13,20 @@ Wishlist.init(
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
         photo: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "https://static.turbosquid.com/Preview/001325/331/VU/_DHQ.jpg"
+            defaultValue: "../public/images/Travelot-Stock-Img-2.jpg"
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Wishlist'
+        modelName: 'Explore'
     }
 );
 
-module.exports = Wishlist;
+module.exports = Explore;
