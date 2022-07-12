@@ -1,10 +1,10 @@
-const locationDelete = document.getElementById('city').innerHTML;
+const locationDelete = document.getElementById('location').innerHTML;
 console.log(locationDelete);
 
 // Delete from wishlist
 const deleteHandler = async () => {
 
-    await fetch(`/api/wishlist/${locationDelete}`, {
+    await fetch(`/wishlist/${locationDelete}`, {
         method: 'DELETE'
     });
 
