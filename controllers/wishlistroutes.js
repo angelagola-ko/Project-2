@@ -37,6 +37,7 @@ router.post('/', (req, res) => {
         dbWishlistData => {
         const wishlist = [dbWishlistData].map(wishlist => wishlist.get({ plain: true }));
         res.render('wishlist', { wishlist })
+        console.log(wishlist)
         })
         .catch(err => {
             console.log(err);

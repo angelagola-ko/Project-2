@@ -13,16 +13,13 @@ router.get('/', (req, res) => {
             'id',
             'location',
             'photo',
-            'user_id',
+            'details',
+            // 'user_id',
         ]
     })
     .then(dbTripsData => {
-        if (!dbTripsData) {
-            res.status(404).json({ message: 'No trip found' });
-            return;
-        }
-        res.json(dbTripsData);
-        console.log(dbTripsData)
+        const trips = dbTripsData.map(trips => trips.get({ plain: true }));
+        res.render('trips', { trips });
         })
         .catch(err => {
         console.log(err);
@@ -31,7 +28,7 @@ router.get('/', (req, res) => {
 });
 
 
-// GET one wishlist location by city
+// GET one trips location by city
 router.get('/:location', (req, res) => {
     Trips.findOne({
         where: {
@@ -42,15 +39,13 @@ router.get('/:location', (req, res) => {
             'id',
             'location',
             'photo',
-            'user_id',
+            'details',
+            // 'user_id',
         ]
     })
     .then(dbTripsData => {
-        if (!dbTripsData) {
-            res.status(404).json({ message: 'No trip found for this city' });
-            return;
-        }
-        res.json(dbTripsData);
+        const trips = dbTripsData.map(trips => trips.get({ plain: true }));
+        res.render('trips', { trips });
         })
         .catch(err => {
         console.log(err);
@@ -60,38 +55,23 @@ router.get('/:location', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    // Get photo
-    var getCity = function (city) {
-        cityLocation = city.replace(/ /g, '-').replace(/\./g, '').toLowerCase();
-        console.log(cityLocation);
-
-        fetch(`https://api.teleport.org/api/urban_areas/slug:${cityLocation}/images/`)
-        .then(function (response) {
-            response.json()
-            .then(function (data) {
-                console.log(data.photos[0].image.mobile)
-                makeTrip(data.photos[0].image.mobile);
-            });
-        })
-    }
-    // End of Get Photo
-
-    // Create trip object
-    var makeTrip = function (cityPhoto) {
-        Trips.create({
-            location: req.body.location,
-            photo: cityPhoto,
-            user_id: req.body.user_id
-        })
-        .then(dbTripsData => res.json(dbTripsData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    };
-
-    getCity(req.body.location);
-});
+    Trips.create({
+        location: req.body.location,
+        photo: req.body.photo,
+        details: req.body.details,
+        // user_id: req.body.user_id
+    })
+    .then(
+    dbTripsData => {
+    const trips = [dbTripsData].map(trips => trips.get({ plain: true }));
+    res.render('trips', { trips })
+    console.log(trips)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
 
 // Delete past trip location
 router.delete('/:location', async (req, res) => {
