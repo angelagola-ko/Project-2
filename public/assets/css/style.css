@@ -1,5 +1,4 @@
 /* Dropdown Button */
-.body {background-color: #fca440}
 
 .nav {
     background-color: rgb(18, 61, 97);
@@ -9,7 +8,6 @@
     padding: 15px;
 }
 .dropbtn {
-    background-color: #fca440;
     color: white;
     padding: 8px;
     font-size: 16px;
