@@ -18,17 +18,13 @@ const sess = {
     cookie: {},
     resave: false,
     saveUninitialized: true,
-   store: new SequelizeStore({
-       db: sequelize
-   })
+    store: new SequelizeStore({
+        db: sequelize
+    })
 };
 
 app.use(session(sess));
 
-//const helpers = require('./utils/helpers');
-const hbs = exphbs.create({});;
-
-//const hbs = exphbs.create({ helpers });
 app.use(express.static("public"));
 
 app.engine('handlebars', exphbs.engine());
@@ -42,4 +38,4 @@ app.use(require('./controllers/'));
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
- });
+});

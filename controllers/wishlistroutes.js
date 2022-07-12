@@ -3,6 +3,7 @@ const { Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
 
 
+// get full wishlist
 router.get("/" , (req,res) => {
     Wishlist.findAll({
         // where: {
@@ -25,6 +26,7 @@ router.get("/" , (req,res) => {
     });
 })
 
+// Add city to wishlist page
 router.post('/', (req, res) => {
     // Get photo
     var getCity = function (city) {
@@ -66,6 +68,7 @@ router.post('/', (req, res) => {
     getCity(req.body.location);
 });
 
+// go to single wishlist city location
 router.get("/:location" , (req,res) => {
     Wishlist.findOne({
         where: {
@@ -88,6 +91,25 @@ router.get("/:location" , (req,res) => {
         res.status(500).json(err);
     });
 })
+
+// Delete wishlist location
+router.delete('/:location', async (req, res) => {
+    try {
+        const [changedWishlist] = Wishlist.destroy({
+            where: {
+                location: req.params.location,
+            },
+        });
+
+        if (changedWishlist > 0) {
+            res.status(200).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 
 module.exports = router;
