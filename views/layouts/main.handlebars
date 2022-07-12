@@ -10,11 +10,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelot</title>
 </head>
+
 <body>
+    <nav class="d-flex justify-content-center">
+    <h2>Travelot</h2>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">
+  {{!-- <span class="navbar-toggler-icon"></span> --}}
+  Menu</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/trips">Past Trips</a>
+    <a href="/wishlist">Wishlist</a>
+    <a href="/">Logout</a>
+  </div>
+</div>
+</nav>
+
+    
     {{{ body }}}
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/add-post.js"></script>
+    <script src="assets/js/dropdown.js"></script>
 
 </body>
 </html>
