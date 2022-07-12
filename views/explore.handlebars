@@ -1,0 +1,40 @@
+<h1 class="jumbotron text-center text-info">
+    <a href="menu" class="btn btn-info">Menu</a>
+    Travelot
+    {{!-- <img src="..." alt="" style="float:right"> --}}
+</h1>
+
+<section class="container">
+    <!-- Add to explore -->
+    <h4 class="text-center">Add Destination to explore</h4>
+    <form class="explore-form text-center d-flex justify-content-center">
+        <input type="text" name="location" placeholder="Enter City" />
+        <button type="submit" class="btn btn-info"/>Search</button>
+    </form>
+</section>
+
+<br>
+<br>
+<section>
+    <!-- Render explore -->
+    <h4 class="jumbotron text-center text-info">Explore</h4>
+    <div class='row justify-content-center'>
+        <a href="/explore"></a>
+            {{#each explore}}
+                {{> explore-details}}
+            {{/each}}
+        </a>
+    </div>
+</section>
+
+
+<script src="/assets/js/explore-post.js"></script>
+
+
+<section id="explore" class="card text-center col-lg-6 offset-lg-3" style="width: auto">
+    {{!-- <img class="card-img-top" src="images/Travelot-Stock-Img-2.jpg" alt="Travel Destination"> --}}
+    <div class="card-body justify-content-center">
+        <p class="card-text">Click here to search for flights to the destination!</p>
+        <a href="https://www.travelocity.com/" type="submit" class="btn btn-info justify-content-center">View Flights</a>
+    </div>
+</section>
