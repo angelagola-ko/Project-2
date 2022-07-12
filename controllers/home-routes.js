@@ -13,16 +13,5 @@ router.get("/trips" ,(req,res) => {
     res.render("trips");
 })
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-    res.render('login');
-});
-
-router.get('/menu', (req, res) => {
-    res.render('menu');
-});
 
 module.exports = router;
