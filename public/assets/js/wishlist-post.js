@@ -20,7 +20,7 @@ async function newWishlist(event) {
     // End of Get Photo
 
     async function makeWishlist(photo, location) {
-        await fetch(`/wishlist`, {
+        const response = await fetch(`/wishlist`, {
             method: 'POST',
             body: JSON.stringify({
                 location,
@@ -30,10 +30,12 @@ async function newWishlist(event) {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(document.location.replace('/wishlist'))
-    }
+        })
 
-    document.location.replace('/wishlist')
+        if (response.ok) {
+            document.location.replace('/wishlist')
+        }
+    }
 }
 
 document.querySelector('.wishlist-form').addEventListener('submit', newWishlist);

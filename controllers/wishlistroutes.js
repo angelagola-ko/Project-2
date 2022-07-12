@@ -27,8 +27,8 @@ router.get("/" , (req,res) => {
 })
 
 // Add city to wishlist page
-router.post('/', async (req, res) => {
-        await Wishlist.create({
+router.post('/', (req, res) => {
+        Wishlist.create({
             location: req.body.location,
             photo: req.body.photo,
             // user_id: req.body.user_id
