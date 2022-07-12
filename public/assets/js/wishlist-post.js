@@ -3,7 +3,7 @@ async function newWishlist(event) {
 
     const location = document.getElementById('location').value;
 
-    const response = await fetch(`/wishlist`, {
+    await fetch(`/wishlist`, {
         method: 'POST',
         body: JSON.stringify({
             location,

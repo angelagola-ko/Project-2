@@ -13,7 +13,7 @@ router.get("/" , (req,res) => {
             'id',
             'location',
             'photo',
-            'user_id',
+            // 'user_id',
         ]
     })
     .then(dbWishlistData => {
@@ -52,12 +52,12 @@ router.post('/', (req, res) => {
         Wishlist.create({
             location: req.body.location,
             photo: cityPhoto,
-            user_id: req.body.user_id
+            // user_id: req.body.user_id
         })
         .then(
         dbWishlistData => {
         const wishlist = dbWishlistData.map(wishlist => wishlist.get({ plain: true }));
-        res.render('/wishlist', { wishlist })
+        res.render('wishlist', { wishlist })
         })
         .catch(err => {
             console.log(err);
@@ -79,7 +79,7 @@ router.get("/:location" , (req,res) => {
             'id',
             'location',
             'photo',
-            'user_id',
+            // 'user_id',
         ]
     })
     .then(dbWishlistData => {
