@@ -32,6 +32,8 @@ async function newWishlist(event) {
             }
         }).then(document.location.replace('/wishlist'))
     }
+
+    document.location.replace('/wishlist')
 }
 
 document.querySelector('.wishlist-form').addEventListener('submit', newWishlist);
