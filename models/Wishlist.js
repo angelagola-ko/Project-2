@@ -13,7 +13,8 @@ Wishlist.init(
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         photo: {
             type: DataTypes.STRING,
