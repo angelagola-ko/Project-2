@@ -1,7 +1,7 @@
 async function newWishlist(event) {
     event.preventDefault();
 
-    const location = document.querySelector('input[name="location"]').value;
+    const location = document.getElementById('location').value;
 
     const response = await fetch(`/wishlist`, {
         method: 'POST',
