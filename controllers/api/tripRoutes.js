@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { Trips } = require('../models');
-const withAuth = require('../utils/auth');
+const { Trips, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
-// GET all trip locations for trip page
+// GET all wishlist locations for wishlist page
 router.get('/', (req, res) => {
     Trips.findAll({
         // where: {
@@ -18,10 +18,10 @@ router.get('/', (req, res) => {
     })
     .then(dbTripsData => {
         if (!dbTripsData) {
-            res.status(404).json({ message: 'No trip found' });
+            res.status(404).json({ message: 'No Wishlist found' });
             return;
         }
-        res.json(dbTripsData);
+        res.json(dbTripsaDat);
         console.log(dbTripsData)
         })
         .catch(err => {
@@ -47,7 +47,7 @@ router.get('/:location', (req, res) => {
     })
     .then(dbTripsData => {
         if (!dbTripsData) {
-            res.status(404).json({ message: 'No trip found for this city' });
+            res.status(404).json({ message: 'No Wishlist found for this city' });
             return;
         }
         res.json(dbTripsData);
@@ -70,20 +70,20 @@ router.post('/', (req, res) => {
             response.json()
             .then(function (data) {
                 console.log(data.photos[0].image.mobile)
-                makeTrip(data.photos[0].image.mobile);
+                makeTrips(data.photos[0].image.mobile);
             });
         })
     }
     // End of Get Photo
 
-    // Create trip object
-    var makeTrip = function (cityPhoto) {
+    // Create wishlist object
+    var makeTrips = function (cityPhoto) {
         Trips.create({
             location: req.body.location,
             photo: cityPhoto,
             user_id: req.body.user_id
         })
-        .then(dbTripsData => res.json(dbTripsData))
+        .then(dbWishlistData => res.json(dbWishlistData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -93,10 +93,10 @@ router.post('/', (req, res) => {
     getCity(req.body.location);
 });
 
-// Delete past trip location
+// Delete wishlist location
 router.delete('/:location', async (req, res) => {
     try {
-        const [changedTrips] = Trips.destroy({
+        const [changedWishlist] = Trips.destroy({
             where: {
                 location: req.params.location,
             },
