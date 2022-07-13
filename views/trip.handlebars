@@ -1,24 +1,32 @@
 <!-- Title -->
-<h1 class="jumbotron text-center text-info display-1">trips</h1>
+<h1 class="jumbotron text-center text-info display-1">Add or View Your Trips</h1>
 
 
 <!-- If the user is logged in, allow them to add to trips and also render their trips -->
 {{!-- {{#if loggedIn}} --}}
-<section class="container">
+<section class="container-fluid text-center">
     <!-- Add to trips -->
-    <h4 class="text-center">Add new trips</h4>
-    <form class="trips-form text-center d-flex justify-content-center">
+    <form class="trips-form text-center justify-content-center">
+        <h1 style="color: #FFFFFF;">Add City</h1>
         <input type="text" name="location" id="location" placeholder="Enter City" />
-        <textarea type="text" name="details" id="details" placeholder="enter details"/></textarea>
-        <button type="submit" class="btn btn-info"/>Add</button>
-    </form>
+
+      <br>
+      <br>
+
+        <h1 style="color: #FFFFFF;">Trip Details</h1>
+        <textarea type="text" name="details" id="details" rows="4" style="width:60%" placeholder="Highlights of your trip... We went scuba diving!"/></textarea>
+
+      <br>
+
+        <button type="submit" style="width:10%" class="btn btn-info"/>Add</button>
+      </form>
 </section>
 
 <br>
 
 <section>
     <!-- Render trips -->
-    <h4 class="jumbotron text-center text-info">My trips</h4>
+    <h4 class="jumbotron text-center text-info" style="font-size: 5rem">My Trips</h4>
     <div class='row justify-content-center'>
         <a href="/trips"></a>
             {{#each trip}}

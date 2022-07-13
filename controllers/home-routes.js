@@ -21,10 +21,6 @@ router.get('/menu', (req, res) => {
     res.render('menu');
 });
 
-router.get("/wishlist" ,(req,res) => {
-    res.render("wishlist");
-})
-
 router.get("/explore" ,(req,res) => {
     res.render("explore");
 })
