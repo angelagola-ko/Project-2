@@ -13,6 +13,18 @@ router.get("/trips" ,(req,res) => {
     res.render("trips");
 })
 
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    res.render('login');
+});
+
+router.get('/menu', (req, res) => {
+    res.render('menu');
+});
+
 router.get("/wishlist" ,(req,res) => {
     res.render("wishlist");
 })
