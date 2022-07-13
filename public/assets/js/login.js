@@ -1,3 +1,5 @@
+const { response } = require('express');
+
 async function signupFormHandler(event) {
     event.preventDefault();
 
@@ -14,7 +16,12 @@ async function signupFormHandler(event) {
                 password
             }),
             headers: { 'Content-Type': 'application/json' }
-        }).then((response) => { console.log(response) })
+        })
+        if(response.ok) {
+            console.log('success');
+        } else {
+            alert(response.statusText);
+        }
     }
 }
 
@@ -42,4 +49,5 @@ async function loginFormHandler(event) {
     }
 }
 
+document.querySelector('.login-form').addEventListener('submit', signupFormHandler)
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
