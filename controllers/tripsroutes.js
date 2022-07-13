@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Wishlist } = require('../models');
+const { Trips } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-// get full wishlist
+// get full Trips
 router.get("/" , (req,res) => {
-    Wishlist.findAll({
+    Trips.findAll({
         // where: {
         //     user_id: req.session.user_id
         // },
@@ -13,12 +13,13 @@ router.get("/" , (req,res) => {
             'id',
             'location',
             'photo',
+            'details',
             // 'user_id',
         ]
     })
-    .then(dbWishlistData => {
-        const wishlist = dbWishlistData.map(wishlist => wishlist.get({ plain: true }));
-        res.render("wishlist", { wishlist });
+    .then(dbTripsData => {
+        const trip = dbTripsData.map(trip => trip.get({ plain: true }));
+        res.render('trip', { trip });
     })
     .catch(err => {
         console.log(err);
@@ -26,18 +27,19 @@ router.get("/" , (req,res) => {
     });
 })
 
-// Add city to wishlist page
+// Add city to Trips page
 router.post('/', (req, res) => {
-        Wishlist.create({
+        Trips.create({
             location: req.body.location,
             photo: req.body.photo,
+            details: req.body.details,
             // user_id: req.body.user_id
         })
         .then(
-        dbWishlistData => {
-        const wishlist = [dbWishlistData].map(wishlist => wishlist.get({ plain: true }));
-        res.render('wishlist', { wishlist })
-        console.log(wishlist)
+        dbTripsData => {
+        const trip = [dbTripsData].map(trip => trip.get({ plain: true }));
+        res.render('trip', { trip })
+        console.log(trip)
         })
         .catch(err => {
             console.log(err);
@@ -45,9 +47,9 @@ router.post('/', (req, res) => {
         });
 });
 
-// go to single wishlist city location
+// go to single Trips city location
 router.get("/:location" , (req,res) => {
-    Wishlist.findOne({
+    Trips.findOne({
         where: {
             // user_id: req.session.user_id,
             location: req.params.location
@@ -56,12 +58,13 @@ router.get("/:location" , (req,res) => {
             'id',
             'location',
             'photo',
+            'details',
             // 'user_id',
         ]
     })
-    .then(dbWishlistData => {
-        const wishlist = [dbWishlistData].map(wishlist => wishlist.get({ plain: true }));
-        res.render("city", { wishlist });
+    .then(dbTripsData => {
+        const trip = [dbTripsData].map(trip => trip.get({ plain: true }));
+        res.render("tripCity", { trip });
     })
     .catch(err => {
         console.log(err);
@@ -69,16 +72,16 @@ router.get("/:location" , (req,res) => {
     });
 })
 
-// Delete wishlist location
+// Delete Trips location
 router.delete('/:location', async (req, res) => {
     try {
-        const [changedWishlist] = Wishlist.destroy({
+        const [changedTrips] = Trips.destroy({
             where: {
                 location: req.params.location,
             },
         });
 
-        if (changedWishlist > 0) {
+        if (changedTrips > 0) {
             res.status(200).end();
         } else {
             res.status(404).end();

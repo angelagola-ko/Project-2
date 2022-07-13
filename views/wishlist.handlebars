@@ -1,15 +1,15 @@
 <!-- Title -->
-<h1 class="jumbotron text-center text-info display-1">Wishlist</h1>
+<h4 class="jumbotron text-center text-warning bg-dark" style="font-size: 4rem">My Wishlist</h4>
 
 
 <!-- If the user is logged in, allow them to add to wishlist and also render their wishlist -->
 {{!-- {{#if loggedIn}} --}}
 <section class="container">
     <!-- Add to wishlist -->
-    <h4 class="text-center">Add Destination to Wishlist</h4>
+    <h5 class="text-center">Add Destination to Wishlist</h5>
     <form class="wishlist-form text-center d-flex justify-content-center">
         <input type="text" name="location" id="location" placeholder="Enter City" />
-        <button type="submit" class="btn btn-info"/>Add</button>
+        <button type="submit" class="btn btn-warning text-white"/>Add</button>
     </form>
 </section>
 
@@ -17,7 +17,6 @@
 
 <section>
     <!-- Render Wishlist -->
-    <h4 class="jumbotron text-center text-info">My Wishlist</h4>
     <div class='row justify-content-center'>
         <a href="/wishlist"></a>
             {{#each wishlist}}
@@ -34,5 +33,5 @@
 
 <!-- Otherwise, provide a link to login -->
 {{!-- {{else}}
-<a class="text-center text-info" href="/login">You must login first to view your wishlist</a>
+<a class="text-center text-warning" href="/login">You must login first to view your wishlist</a>
 {{/if}} --}}

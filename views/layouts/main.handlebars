@@ -10,16 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelot</title>
 </head>
-<header>
-    <div class ="bg bg-info">
-        <a href="/menu" class="btn btn-info">Menu</a>
+
+<nav class="d-flex justify-content-center sticky-top nav">
+    <h2>Travelot</h2>
+
+    <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn bg-color">
+     <i class="fa-solid fa-bars"></i>
+    Menu</button>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/trips">Past Trips</a>
+        <a href="/wishlist">Wishlist</a>
+        <a href="/logout">Logout</a>
     </div>
-</header>
-<body>
-    <div class="menu col-lg-6 offset-lg-3" style="width: 18rem;"></div>
+    </div>
+</nav>
+
+<body class="bg-color">
+
     
     {{{ body }}}
 
-    <script src="assets/js/script.js"></script>
+
+    <script src="assets/js/dropdown.js"></script>
+    <script src="https://kit.fontawesome.com/6cb0f23ae9.js" crossorigin="anonymous"></script>
+
 </body>
+
+<footer>Travelot&copy;</footer>
 </html>
