@@ -1,6 +1,28 @@
 const router = require('express').Router();
 const { Explore } = require('../models');
 
+
+router.get("/" , (req,res) => {
+    Explore.findAll({
+        // where: {
+        //     user_id: req.session.user_id
+        // },
+        attributes: [
+            'id',
+            'location',
+            'photo',
+        ]
+    })
+    .then(dbExploreCardData => {
+        const explore = dbExploreCardData.map(explore => explore.get({ plain: true }));
+        res.render("explore", { explore });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
 router.post('/', (req, res) => {
     // Get photo
     var getCity = function (city) {
