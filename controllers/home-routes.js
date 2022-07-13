@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Trips, Wishlist, Explore } = require('../models');
 
-router.get("/homepage", (req,res) => {
+router.get("/", (req,res) => {
     res.render("homepage");
 });
 
