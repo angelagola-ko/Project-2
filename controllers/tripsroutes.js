@@ -3,8 +3,8 @@ const { Trips } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-// GET all trip locations for trip page
-router.get('/', (req, res) => {
+// get full Trips
+router.get("/" , (req,res) => {
     Trips.findAll({
         // where: {
         //     user_id: req.session.user_id
@@ -18,18 +18,37 @@ router.get('/', (req, res) => {
         ]
     })
     .then(dbTripsData => {
-        const trips = dbTripsData.map(trips => trips.get({ plain: true }));
-        res.render('trips', { trips });
-        })
-        .catch(err => {
+        const trip = dbTripsData.map(trip => trip.get({ plain: true }));
+        res.render('trip', { trip });
+    })
+    .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
+})
+
+// Add city to Trips page
+router.post('/', (req, res) => {
+        Trips.create({
+            location: req.body.location,
+            photo: req.body.photo,
+            details: req.body.details,
+            // user_id: req.body.user_id
+        })
+        .then(
+        dbTripsData => {
+        const trip = [dbTripsData].map(trip => trip.get({ plain: true }));
+        res.render('trip', { trip })
+        console.log(trip)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
-
-// GET one trips location by city
-router.get('/:location', (req, res) => {
+// go to single Trips city location
+router.get("/:location" , (req,res) => {
     Trips.findOne({
         where: {
             // user_id: req.session.user_id,
@@ -44,28 +63,8 @@ router.get('/:location', (req, res) => {
         ]
     })
     .then(dbTripsData => {
-        const trips = dbTripsData.map(trips => trips.get({ plain: true }));
-        res.render('trips', { trips });
-        })
-        .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
-
-
-router.post('/', (req, res) => {
-    Trips.create({
-        location: req.body.location,
-        photo: req.body.photo,
-        details: req.body.details,
-        // user_id: req.body.user_id
-    })
-    .then(
-    dbTripsData => {
-    const trips = [dbTripsData].map(trips => trips.get({ plain: true }));
-    res.render('trips', { trips })
-    console.log(trips)
+        const trip = [dbTripsData].map(trip => trip.get({ plain: true }));
+        res.render("tripCity", { trip });
     })
     .catch(err => {
         console.log(err);
@@ -73,7 +72,7 @@ router.post('/', (req, res) => {
     });
 })
 
-// Delete past trip location
+// Delete Trips location
 router.delete('/:location', async (req, res) => {
     try {
         const [changedTrips] = Trips.destroy({

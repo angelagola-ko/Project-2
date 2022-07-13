@@ -10,7 +10,7 @@ router.get("/dashboard", (req,res) => {
 });
 
 router.get("/trips" ,(req,res) => {
-    res.render("trips");
+    res.render("trip");
 })
 
 

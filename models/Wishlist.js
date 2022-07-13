@@ -14,7 +14,6 @@ Wishlist.init(
         location: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         photo: {
             type: DataTypes.STRING,
