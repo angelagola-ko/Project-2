@@ -21,7 +21,7 @@ async function newtrips(event) {
     // End of Get Photo
 
     async function maketrips(photo) {
-        const response = await fetch('/trips', {
+        const response = await fetch(`/trips`, {
             method: 'POST',
             body: JSON.stringify({
                 location,
