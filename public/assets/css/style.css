@@ -1,7 +1,13 @@
 /* Dropdown Button */
+h5 {
+    color:white;
+}
 
+.bg-color, .card {
+    background-color: rgb(27, 27, 27);
+}
 .nav {
-    background-color: rgb(18, 61, 97);
+    background-color: rgb(0, 0, 0);
     color: white;
     border: 1px solid black;
     height: 75px;
@@ -9,6 +15,7 @@
 }
 .dropbtn {
     color: white;
+    background-color: rgb(255, 196, 0);
     padding: 8px;
     font-size: 16px;
     border: none;
