@@ -13,7 +13,8 @@ Trips.init(
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         photo: {
             type: DataTypes.STRING,
@@ -22,7 +23,7 @@ Trips.init(
         },
         details: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,

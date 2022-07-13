@@ -14,11 +14,12 @@ Wishlist.init(
         location: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         },
         photo: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "https://static.turbosquid.com/Preview/001325/331/VU/_DHQ.jpg"
+            defaultValue: "../public/images/Travelot-Stock-Img-2.jpg"
         },
         user_id: {
             type: DataTypes.INTEGER,
