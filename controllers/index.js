@@ -4,8 +4,6 @@ const wishlistRoutes = require('./wishlistroutes.js');
 const tripstRoutes = require('./tripsroutes.js');
 const exploreRoutes = require("./exploreroutes.js");
 
-const axios = require("axios").default;
-
 
 
 router.use("/", homeRoute);
