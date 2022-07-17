@@ -39,7 +39,7 @@ h5 {
   .dropdown {
     position: relative;
     display: inline-block;
-    background-image: url("data:image/svg+xml;..");
+    /* background-image: url("data:image/svg+xml;.."); */
   }
   
   /* Dropdown Content (Hidden by Default) */
