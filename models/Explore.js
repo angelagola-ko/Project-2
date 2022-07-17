@@ -5,12 +5,12 @@ class Explore extends Model {}
 
 Explore.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     autoIncrement: true
+        // },
         location: {
             type: DataTypes.STRING,
             allowNull: false
@@ -20,6 +20,11 @@ Explore.init(
             allowNull: false,
             defaultValue: "https://static.turbosquid.com/Preview/001325/331/VU/_DHQ.jpg"
         },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "description"
+        }
     },
     {
         sequelize,

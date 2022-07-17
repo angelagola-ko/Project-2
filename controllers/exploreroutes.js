@@ -2,12 +2,13 @@ const router = require('express').Router();
 const { Explore } = require('../models');
 
 
-router.get("/" , (req,res) => {
+router.get("/explore" , (req,res) => {
     Explore.findAll({
         attributes: [
             'id',
             'location',
             'photo',
+            'description'
         ]
     })
     .then(dbExploreCardData => {
@@ -21,10 +22,11 @@ router.get("/" , (req,res) => {
 })
 
 // Add city to explore page
-router.post('/', (req, res) => {
+router.post('/explore', (req, res) => {
     Explore.create({
         location: req.body.location,
         photo: req.body.photo,
+        description: req.body.description
         // user_id: req.body.user_id
     })
     .then(
