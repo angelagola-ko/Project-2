@@ -10,6 +10,7 @@ async function newWishlist(event) {
             console.log(response.status)
                 response.json()
                 .then(function (data) {
+                    console.log(data);
                     makeWishlist(data.photos[0].image.mobile, location);
                 });
         } else {
