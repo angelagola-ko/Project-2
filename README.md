@@ -58,5 +58,3 @@
   * Daniel Warren
   * Giovanni Claro 
   #### &copy;2022 All Rights Reserved.
-=======
-# Project-2 Hello!
