@@ -13,7 +13,7 @@ router.get("/explore" , (req,res) => {
     })
     .then(dbExploreCardData => {
         const explore = dbExploreCardData.map(explore => explore.get({ plain: true }));
-        res.render("explore", { explore });
+        res.render('explore', { explore });
     })
     .catch(err => {
         console.log(err);
@@ -23,6 +23,9 @@ router.get("/explore" , (req,res) => {
 
 // Add city to explore page
 router.post('/explore', (req, res) => {
+    Explore.destroy({
+        where: { force: true}
+        });
     Explore.create({
         location: req.body.location,
         photo: req.body.photo,
@@ -39,3 +42,6 @@ router.post('/explore', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+
+module.exports = router;

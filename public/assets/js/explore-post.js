@@ -16,10 +16,9 @@ async function newExplore(event) {
     fetch(queryStr, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response.data[0]);
-            let photo;
-            let location;
-            let description;
+            let photo = response.data[0].result_object.photo.images.small.url;
+            let location = response.data[0].result_object.location_string;
+            let description = response.data[0].result_object.geo_description;
 
             newExplore(photo, location, description)})
         .catch(err => console.error(err));
