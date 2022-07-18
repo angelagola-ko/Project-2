@@ -1,4 +1,4 @@
- # Travellot
+ # Travelot
 
 
   ![badge](https://img.shields.io/badge/license-mit-blue)
@@ -58,3 +58,5 @@
   * Daniel Warren
   * Gio Claro 
   #### &copy;2022 All Rights Reserved.
+=======
+# Project-2 Hello!
