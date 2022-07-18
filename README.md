@@ -29,6 +29,8 @@
 
 
   #### Create login, save to wishlist and trips pages.
+  
+  * [Click Here](https://travelot-app.herokuapp.com/) for deployed application using Heroku.
 
 
   ![Example Image](./public/images/travelot.png)
@@ -56,7 +58,5 @@
   * Angela Gola
   * Kyle Bort
   * Daniel Warren
-  * Gio Claro 
+  * Giovanni Claro 
   #### &copy;2022 All Rights Reserved.
-=======
-# Project-2 Hello!
