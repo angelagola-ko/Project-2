@@ -29,6 +29,8 @@
 
 
   #### Create login, save to wishlist and trips pages.
+  
+  * [Click Here](https://travelot-app.herokuapp.com/) for deployed application using Heroku.
 
 
   ![Example Image](./public/images/travelot.png)
