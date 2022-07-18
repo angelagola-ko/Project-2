@@ -1,9 +1,6 @@
-const router = require("express").Router();
-const { User, Trips, Wishlist, Explore } = require('../models');
+const router = require('express').Router();
+const { Explore } = require('../models');
 
-router.get("/", (req,res) => {
-    res.render("explore");
-});
 
 router.get("/explore" , (req,res) => {
     Explore.findAll({
@@ -26,6 +23,9 @@ router.get("/explore" , (req,res) => {
 
 // Add city to explore page
 router.post('/explore', (req, res) => {
+    Explore.destroy({
+        where: { force: true}
+        });
     Explore.create({
         location: req.body.location,
         photo: req.body.photo,
@@ -41,22 +41,6 @@ router.post('/explore', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-});
-
-router.get("/menu", (req,res) => {
-    res.render("menu");
-});
-
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-});
-
-router.get('/menu', (req, res) => {
-    res.render('menu');
 });
 
 

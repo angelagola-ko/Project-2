@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelot</title>
+</head>
+
+<nav class="d-flex justify-content-center sticky-top nav">
+    <h2>Travelot</h2>
+
+    <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn bg-color">
+        <i class="fa-solid fa-bars"></i>
+    Menu</button>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="/explore">Home</a>
+        <a href="/login">Login</a>
+        <a href="/trips">Past Trips</a>
+        <a href="/wishlist">Wishlist</a>
+        <a href="/explore">Logout</a>
+    </div>
+      {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+      {{/if}}
+    </div>
+</nav>
+
+<body class="bg-color">
+
+    
+    {{{ body }}}
+
+
+    <script src="assets/js/dropdown.js"></script>
+    <script src="https://kit.fontawesome.com/6cb0f23ae9.js" crossorigin="anonymous"></script>
+
+</body>
+
+<footer>Travelot&copy;</footer>
+</html>
