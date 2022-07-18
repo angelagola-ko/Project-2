@@ -56,5 +56,5 @@
   * Angela Gola
   * Kyle Bort
   * Daniel Warren
-  * Gio Claro 
+  * Giovanni Claro 
   #### &copy;2022 All Rights Reserved.
