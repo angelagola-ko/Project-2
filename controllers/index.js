@@ -10,8 +10,7 @@ const userRoutes = require('./user-routes');
 router.use("/", homeRoute);
 router.use("/wishlist", wishlistRoutes);
 router.use("/trips", tripstRoutes);
-// router.use("/explore", exploreRoutes);
 router.use('/user', userRoutes);
-
+router.use("/explore", exploreRoutes);
 
 module.exports = router;
