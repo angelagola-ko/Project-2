@@ -13,6 +13,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+    console.log('1')
+    console.log('HITTING THIS ID ROUTE')
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
@@ -52,6 +54,7 @@ router.post('/', ({body}, res) => {
 });
 
 router.post('/login', (req, res) => {
+    console.log('I AM IN THE USER ROUTE')
     User.findOne({
         where: {
             email: req.body.email
@@ -93,6 +96,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+    console.log('2')
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -113,6 +117,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+    console.log(3)
     User.destroy({
       where: {
         id: req.params.id

@@ -33,7 +33,7 @@ async function loginFormHandler(event) {
   if (email && password) {
     console.log("Email & PW exists", email, password);
     console.log("Clicking Login button");
-    const response = await fetch("/login", {
+    const response = await fetch("/user/login", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -43,6 +43,7 @@ async function loginFormHandler(event) {
     });
     console.log(response);
     if (response.ok) {
+        console.log("ghesris");
       return response;
       //   document.location.replace('/explore');
     } else {
