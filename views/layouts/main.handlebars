@@ -20,14 +20,14 @@
     Menu</button>
     <div id="myDropdown" class="dropdown-content">
         <a href="/">Home</a>
-        <a href="/login">Login</a>
         <a href="/trips">Past Trips</a>
         <a href="/wishlist">Wishlist</a>
         
         {{#if loggedIn}}
         <a href="/explore">Logout</a>
+        {{else}}
+        <a href="/login">Login</a>
         {{/if}}
-
     </div>
       {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>

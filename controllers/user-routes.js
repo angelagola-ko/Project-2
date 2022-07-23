@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, Wishlist, Trips, Explore } = require('../models')
 
-
 router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
@@ -35,12 +34,8 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
-    User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    })
+router.post('/', ({body}, res) => {
+    User.create(body)
         .then(dbUserData => {
             req.session.save(() => {
                 req.session.user_id = dbUserData.id;
@@ -66,9 +61,10 @@ router.post('/login', (req, res) => {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
         }
-
+console.log(dbUserData);
+console.log(req.session);
         const validPassword = dbUserData.checkPassword(req.body.password);
-
+console.log(validPassword);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
@@ -79,7 +75,7 @@ router.post('/login', (req, res) => {
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
-
+console.log(req.session);
             res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
     });

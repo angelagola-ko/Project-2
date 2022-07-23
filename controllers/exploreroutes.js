@@ -13,7 +13,7 @@ router.get("/explore" , (req,res) => {
     })
     .then(dbExploreCardData => {
         const explore = dbExploreCardData.map(explore => explore.get({ plain: true }));
-        res.render('explore', { explore });
+        res.render('explore', { explore }, { loggedIn: req.session.loggedIn });
     })
     .catch(err => {
         console.log(err);

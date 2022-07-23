@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 
 const app = express();
 const PORT = process.env.PORT || 3004;
+console.log("Running at", PORT);
 
 const sequelize = require('./config/connection');
 const { add } = require('lodash');
@@ -37,6 +38,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 sequelize.sync({ force: true }).then(() => {
-    app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}/explore`));
+    app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
  });
 

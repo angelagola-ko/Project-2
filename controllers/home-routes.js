@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Trips, Wishlist, Explore } = require('../models');
 
 router.get("/", (req,res) => {
+    console.log('LoggedIn: ',req.session);
     res.render("explore");
 });
 
